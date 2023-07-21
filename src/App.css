@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+img {
+  width: 100px;
+  height: auto;
+  margin-top: 20px;
+}
+
+table {
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 592px;
+  height: 225px;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+  font-size: xx-large;
+  font-style: italic;
+  font-family: cursive;
+  background: url(background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+tr {
+  position: relative;
+}
+
+td {
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+  position: relative;
+  color: black;
+}
