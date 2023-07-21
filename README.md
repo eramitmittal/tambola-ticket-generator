@@ -1,4 +1,5 @@
-After running the file, take a printout of the page
+After running the file, take a printout of the page.
+
 Annoucer app: https://github.com/eramitmittal/tambola-announcer
 
 # Getting Started with Create React App
