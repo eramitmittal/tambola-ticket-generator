@@ -1,8 +1,10 @@
+After running the file, take a printout of the page
+Annoucer app: https://github.com/eramitmittal/tambola-announcer
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-After running the file, take a printout of the page
 
 ## Available Scripts
 
