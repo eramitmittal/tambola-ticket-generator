@@ -1,17 +1,37 @@
 export class TicketGenerator {
     generate() {
-        let numAnnouncer = new Announcer(90);
         const toRet = Array.from({length: 27}).map(()=>"");
         
-        const nums = Array.from({length: 15}).map(()=>numAnnouncer.next());
-    
-        for(let row=0; row<3; row++)
-        {
-            let cellAnnouncer = new Announcer(9);
-            const cells = Array.from({length: 5}).map(()=>cellAnnouncer.next());
-            cells.forEach((v)=>{
-                toRet[9*row + v-1] = nums.splice(0, 1)[0];
-            })
+        //3 rows
+        for (let row = 1; row < 4; row++) {
+            let cellAnnouncer = new Announcer(9*(row-1), 9*(row-1) + 8);
+            const cellsToPopulateInCurrentRow = Array.from({length: 5}).map(()=>cellAnnouncer.next());
+            cellsToPopulateInCurrentRow.forEach(cell => {
+                toRet[cell] = "P";
+            });
+        }
+
+        //9 columns
+        for (let col = 1; col < 10; col++){
+            const min = (col - 1) * 10;
+            const max = min + 9;
+            let numAnnouncer = new Announcer(min ? min: 1, max);
+            let announcedNumbers = [];
+            let cellsToPopulate = [];
+
+            //3 rows per column
+            for (let row = 1; row < 4; row++) {
+                const currentCell = (9*(row-1)) + col -1;
+                if(toRet[currentCell] === "P") {
+                    cellsToPopulate.push(currentCell);
+                    announcedNumbers.push(numAnnouncer.next());
+                }
+            }
+            
+            announcedNumbers.sort((a,b)=> a-b);
+            cellsToPopulate.forEach(cell => {
+                toRet[cell] = announcedNumbers.splice(0,1)[0];
+            });
         }
 
         return toRet;
@@ -22,8 +42,8 @@ class Announcer {
     
     #available;
 
-    constructor(maxAllowed) {
-        this.#available = Array.from({length: maxAllowed}, (_, i)=> i + 1);
+    constructor(minAllowed, maxAllowed) {
+        this.#available = Array.from({length: maxAllowed - minAllowed + 1}, (_, i)=> i + minAllowed);
     }
 
     next() {
